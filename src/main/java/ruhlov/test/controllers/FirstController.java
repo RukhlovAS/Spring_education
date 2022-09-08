@@ -3,9 +3,11 @@ package ruhlov.test.controllers;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 
 @Controller
+@RequestMapping("/first")
 public class FirstController {
 
     @GetMapping("/hello")
@@ -14,7 +16,7 @@ public class FirstController {
                             @RequestParam(value="action", required = false) String action,
                             Model model) {
         //System.out.println("hello " + name + " " + surname);
-        String result = "";
+        String result;
         switch(action) {
             case ("multiplication"):
                 result = a + " * " + b + " = " + (a*b);
@@ -27,6 +29,9 @@ public class FirstController {
                 break;
             case ("division"):
                 result = a + " / " + b + " = " + (a/b);
+                break;
+            default:
+                result = "";
                 break;
         }
         model.addAttribute("message", result);
